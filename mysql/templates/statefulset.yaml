@@ -1,39 +1,46 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: mongodb
+  name: mysql
   namespace: roboshop
   labels:
-    app: mongodb
+    app: mysql
     project: roboshop
     tier: db
 spec:
   selector:
     matchLabels:
-      app: mongodb
+      app: mysql
       project: roboshop
       tier: db
-  serviceName: "mongodb"
+  serviceName: "mysql"
   replicas: {{ .Values.statefulset.replicas }}
   template:
     metadata:
       labels:
-        app: mongodb
+        app: mysql
         project: roboshop
         tier: db
     spec:
       containers:
-      - name: mongodb
-        image: "joindevops/mongodb:{{ .Values.statefulset.imageVersion }}"
+      - name: mysql
+        image: "joindevops/mysql:{{ .Values.statefulset.imageVersion }}"
+        args:
+        - "--ignore-db-dir=lost+found"
+        envFrom:
+        - configMapRef:
+            name: mysql
+        - secretRef:
+            name: mysql
         volumeMounts:
-        - name: mongodb
-          mountPath: /data/db
+        - name: mysql
+          mountPath: /var/lib/mysql
   volumeClaimTemplates:
   - metadata:
-      name: mongodb
+      name: mysql
     spec:
       accessModes: [ "ReadWriteOnce" ]
       storageClassName: "ebs-sc"
       resources:
         requests:
-          storage: 1Gi
+          storage: 2Gi
