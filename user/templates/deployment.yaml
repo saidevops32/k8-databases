@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: user
-        image: "joindevops/user:{{ .Values.deployment.imageVersion }}"
+        image: "saidevops32/user:{{ .Values.deployment.imageVersion }}"
         imagePullPolicy: Always
         resources:
           requests:

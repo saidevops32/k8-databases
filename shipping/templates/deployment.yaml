@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: shipping
-        image: "joindevops/shipping:{{ .Values.deployment.imageVersion }}"
+        image: "saidevops32/shipping:{{ .Values.deployment.imageVersion }}"
         imagePullPolicy: Always
         resources:
           requests:

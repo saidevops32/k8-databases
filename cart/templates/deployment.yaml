@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: cart
-        image: "joindevops/cart:{{ .Values.deployment.imageVersion }}"
+        image: "saidevops32/cart:{{ .Values.deployment.imageVersion }}"
         imagePullPolicy: Always
         resources:
           requests:

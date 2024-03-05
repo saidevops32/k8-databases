@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: payment
-        image: "joindevops/payment:{{ .Values.deployment.imageVersion }}"
+        image: "saidevops32/payment:{{ .Values.deployment.imageVersion }}"
         imagePullPolicy: Always
         resources:
           requests:
